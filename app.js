@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+const userRoutes = require('./routes/userRoutes');
+
 const app = express();
 
 // 1) MIDDLEWARES
@@ -15,5 +17,7 @@ app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 
 // 3) ROUTES
+
+app.use('/api/users', userRoutes);
 
 module.exports = app;
