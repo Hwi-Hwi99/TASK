@@ -17,7 +17,7 @@ const login = async (req, res) => {
         });
         res.json({
           token,
-          role: user.role,
+          data: user,
         });
       } else {
         return res.status(401).json({ message: 'Password incorrect!' });

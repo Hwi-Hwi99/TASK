@@ -1,4 +1,4 @@
-const { mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   phone: {
@@ -30,8 +30,12 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Người dùng phải có mật khẩu'],
     minlength: 8,
   },
+  teams: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Team',
+    },
+  ],
 });
 
-const User = mongoose.model('user', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const userRoutes = require('./routes/userRoutes');
+const teamRoutes = require('./routes/teamRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 
@@ -19,5 +21,7 @@ app.use(express.static(`${__dirname}/public`));
 // 3) ROUTES
 
 app.use('/api/users', userRoutes);
+app.use('/api/teams', teamRoutes);
+app.use('/api/tasks', taskRoutes);
 
 module.exports = app;
