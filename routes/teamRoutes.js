@@ -40,7 +40,7 @@ router.route('/').post(teamController.createTeam);
  * @swagger
  * /api/teams/{id}:
  *   get:
- *     summary: Lấy team của người dùng đã đăng nhập
+ *     summary: Lấy chi tiết 1 team
  *     tags: [Teams]
  *     parameters:
  *       - name: id
