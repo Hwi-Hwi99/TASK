@@ -1,13 +1,14 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const setupSwagger = require('./swagger');
 
 const userRoutes = require('./routes/userRoutes');
 const teamRoutes = require('./routes/teamRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
-
+setupSwagger(app);
 // 1) MIDDLEWARES
 // console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {

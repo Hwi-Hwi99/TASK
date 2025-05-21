@@ -1,20 +1,51 @@
 const express = require('express');
 const teamController = require('../controllers/teamController');
-
 const router = express.Router();
 
-// Tạo team mới
-router.route('/').post(teamController.createTeam);
+/**
+ * @swagger
+ * tags:
+ *   name: Teams
+ *   description: Quản lý team và thành viên
+ */
 
-// Truyền id team
-router
-  .route('/:id')
-  .delete(teamController.deleteTeam)
-  .get(teamController.getTeam) ///lấy team của người dùng vừa login
-  .patch(teamController.addMember); // Thêm thành viên vào team  với body có id user được đặt tên là userId
-router.get('/user/:id', teamController.getAllTeam); // truyền id User
+/**
+ * @swagger
+ * /api/teams:
+ *   get:
+ *     summary: Lấy tất cả các team
+ *     tags: [Teams]
+ *     responses:
+ *       200:
+ *         description: Danh sách tất cả team
+ */
+router.get('/', teamController.getAllTeam);
 
-// vẫn là truyền id team nhưng có chữ members với body có id user được đặt tên là userId
-router.patch('/members/:id', teamController.deleteMember); // Xoá thành viên khỏi team
+/**
+ * @swagger
+ * /api/teams:
+ *   post:
+ *     summary: Tạo team mới
+ *     tags: [Teams]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: string
+ *               members:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       201:
+ *         description: Tạo team thành công
+ */
+router.post('/', teamController.createTeam);
 
 module.exports = router;
