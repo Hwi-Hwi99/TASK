@@ -24,18 +24,22 @@ const router = express.Router();
  *             required:
  *               - email
  *               - password
- *               - name
+ *               - fullname
+ *               - phone
  *             properties:
  *               email:
  *                 type: string
  *               password:
  *                 type: string
- *               name:
+ *               fullname:
+ *                 type: string
+ *               phone:
  *                 type: string
  *     responses:
  *       201:
  *         description: Đăng ký thành công
  */
+
 router.post('/register', userController.register);
 
 /**
